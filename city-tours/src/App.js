@@ -1,9 +1,15 @@
 import React from 'react';
 import './App.scss';
+import TourList from './components/TourList'
 
 class App extends React.Component {
   render() {
-    return <h1>our current app</h1>;
+    return (
+      <React.Fragment>
+        <h1 style={{textAlign: "center"}}>City Tour</h1>
+        <TourList />
+      </React.Fragment>
+    )
   }
 }
 
