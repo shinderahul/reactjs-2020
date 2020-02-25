@@ -1,22 +1,37 @@
 import React, { Component } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import uuid, { v4 as uuidv4 } from 'uuid';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "@fortawesome/fontawesome-free/css/all.min.css";
 import TodoInput from './components/TodoInput';
 import TodoList from './components/TodoList';
 
 export default class App extends Component {
 
   state = {
-    items: [{ id: 1, title: "wake up"}, {id: 2, title: "make breakfast"}],
+    items: [],
     id: uuidv4(),
     item: "",
     editItem: false
   }
   handleChange = e => {
-    console.log("handle Change");
+    this.setState({
+      item: e.target.value
+    })
   }
   handleSubmit = e => {
-    console.log("handle submit");
+    e.preventDefault();
+    const newItem = {
+      id: this.state.id,
+      title: this.state.item
+    }
+    const updatedItems = [...this.state.items, newItem];
+
+    this.setState({
+      items: updatedItems,
+      item: '',
+      id: uuidv4(),
+      editItem: false
+    })
   }
   clearList = () => {
     console.log("Clear list");
@@ -39,7 +54,7 @@ export default class App extends Component {
               item={this.state.item}
               handleChange={this.handleChange}
               handleSubmit={this.handleSubmit}
-              editItem={this.editItem}
+              editItem={this.state.editItem}
              />
             <TodoList
               items={this.state.items}
