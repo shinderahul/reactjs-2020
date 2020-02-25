@@ -45,7 +45,7 @@ export default class App extends Component {
               items={this.state.items}
               handleDelete={this.handleDelete}
               handleEdit={this.handleEdit}
-              clearList={clearList}
+              clearList={this.clearList}
             />
             </div>
           </div>
